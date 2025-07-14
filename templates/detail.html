@@ -1,0 +1,148 @@
+<!-- ====================== -->
+<!-- templates/detail.html -->
+<!-- ====================== -->
+{% extends 'layout.html' %}
+{% block title %}{{ item.nama }} ({{ item.kode }}){% endblock %}
+{% block head_scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+{% endblock %}
+{% block content %}
+<header class="detail-header">
+    <div class="company-identity">
+        <div class="logo-container" id="logo-container-detail"></div>
+        <div>
+            <h1>{{ item.nama }} <span>({{ item.kode }})</span></h1>
+            <p class="sektor-detail">{{ item.sektor or item.market }}</p>
+        </div>
+    </div>
+    <div class="compare-form">
+        <input type="text" id="compare-input" placeholder="Bandingkan dengan...">
+        <button id="compare-btn"><i class="fas fa-plus"></i></button>
+        <button id="remove-compare-btn" style="display: none;"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="price-box" id="detail-price-box">
+        <h2 id="detail-price">0.00</h2>
+        <p id="detail-change" class="neutral">0.00 (0.00%)</p>
+    </div>
+</header>
+<div class="detail-main">
+    <div class="chart-section">
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="chart"><i class="fas fa-chart-bar"></i> Chart</button>
+                {% if item_type == 'saham' %}
+                <button class="tab-button" data-tab="financials"><i class="fas fa-file-invoice-dollar"></i> Keuangan</button>
+                <button class="tab-button" data-tab="analysis"><i class="fas fa-book-open"></i> Analisis</button>
+                <button class="tab-button" data-tab="notes"><i class="fas fa-sticky-note"></i> Catatan</button>
+                {% endif %}
+            </div>
+            <div class="tab-content active" id="chart">
+                <div class="chart-wrapper">
+                    <div class="chart-controls">
+                        <div class="btn-group" id="timeframe-controls">
+                            <button data-period="30">1B</button>
+                            <button data-period="180" class="active">6B</button>
+                            <button data-period="365">1T</button>
+                        </div>
+                        <div class="indicator-controls" id="indicator-controls">
+                            <label><input type="checkbox" data-indicator="sma20"> SMA 20</label>
+                            <label><input type="checkbox" data-indicator="sma50"> SMA 50</label>
+                            <label><input type="checkbox" data-indicator="bb"> Bollinger Bands</label>
+                            <label><input type="checkbox" data-indicator="macd"> MACD</label>
+                        </div>
+                        <div class="drawing-toolbar" id="drawing-toolbar">
+                            <button data-tool="trendline" title="Trendline"><i class="fas fa-pencil-alt"></i></button>
+                            <button data-tool="horizontal" title="Horizontal Line"><i class="fas fa-ruler-horizontal"></i></button>
+                            <button id="clear-drawings" title="Hapus Gambar"><i class="fas fa-eraser"></i></button>
+                        </div>
+                        <div class="btn-group" id="chart-type-controls">
+                            <button data-type="candlestick" class="active" title="Candlestick"><i class="fas fa-chart-bar"></i></button>
+                            <button data-type="line" title="Line"><i class="fas fa-chart-line"></i></button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="detailChart"></canvas>
+                    </div>
+                    <div class="chart-container" id="macd-chart-container" style="height: 150px; display: none;">
+                        <canvas id="macdChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            {% if item_type == 'saham' %}
+            <div class="tab-content" id="financials">
+                <div class="financials-grid">
+                    <h3>Ringkasan Keuangan (dalam Triliun Rp)</h3>
+                    <div class="financials-chart-container">
+                        <canvas id="financialsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="analysis">
+                <div class="analysis-grid">
+                    <div class="info-card">
+                        <h3>Profil Perusahaan</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Rekomendasi Analis</h3>
+                        <div id="analyst-chart-container"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="notes">
+                <div class="notes-container">
+                    <h3>Catatan Pribadi</h3>
+                    <textarea id="personal-notes" placeholder="Tulis analisis atau catatan Anda untuk saham ini..."></textarea>
+                    <button id="save-notes-btn">Simpan Catatan</button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if item_type == 'saham' %}
+    <div class="trade-section">
+        <div class="trade-panel">
+            <h3>Transaksi</h3>
+            <div class="trade-form">
+                <div class="trade-type-switcher">
+                    <button id="btn-buy" class="active">Beli</button>
+                    <button id="btn-sell">Jual</button>
+                </div>
+                <div class="form-group">
+                    <label for="trade-lot">Jumlah Lot</label>
+                    <input type="number" id="trade-lot" value="1" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Harga per Lembar</label>
+                    <p id="trade-price">Rp 0</p>
+                </div>
+                <hr>
+                <div class="form-summary">
+                    <span>Total</span>
+                    <strong id="trade-total">Rp 0</strong>
+                </div>
+                <button id="btn-confirm-trade" class="btn-trade btn-buy">Konfirmasi Beli</button>
+            </div>
+        </div>
+        <div class="alert-panel">
+            <h3>Pasang Notifikasi Harga</h3>
+            <div class="alert-form">
+                <select id="alert-condition">
+                    <option value="above">Harga di Atas</option>
+                    <option value="below">Harga di Bawah</option>
+                </select>
+                <input type="number" id="alert-price" placeholder="Target Harga">
+                <button id="btn-set-alert">Pasang</button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block body_scripts %}
+<script>const initialData = {{ item|tojson }};</script>
+<script src="{{ url_for('static', filename='detail.js') }}"></script>
+{% endblock %}

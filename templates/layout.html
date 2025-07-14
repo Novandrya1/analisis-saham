@@ -1,0 +1,63 @@
+<!-- ========================= -->
+<!-- templates/layout.html -->
+<!-- ========================= -->
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Analisis Saham{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    {% block head_scripts %}{% endblock %}
+</head>
+<body id="page-{{ request.endpoint }}">
+    <div class="app-layout">
+        <nav class="sidebar">
+            <a href="{{ url_for('halaman_utama') }}" class="sidebar-brand">
+                <i class="fas fa-chart-pie"></i>
+                <span>Analisis Saham</span>
+            </a>
+            <div class="sidebar-menu">
+                <a href="{{ url_for('halaman_utama') }}" class="menu-item {% if request.endpoint == 'halaman_utama' %}active{% endif %}">
+                    <i class="fas fa-tachometer-alt fa-fw"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="{{ url_for('halaman_portofolio') }}" class="menu-item {% if request.endpoint == 'halaman_portofolio' %}active{% endif %}">
+                    <i class="fas fa-briefcase fa-fw"></i>
+                    <span>Portofolio</span>
+                </a>
+                <a href="{{ url_for('halaman_screener') }}" class="menu-item {% if request.endpoint == 'halaman_screener' %}active{% endif %}">
+                    <i class="fas fa-filter fa-fw"></i>
+                    <span>Screener</span>
+                </a>
+                <a href="{{ url_for('halaman_kalkulator') }}" class="menu-item {% if request.endpoint == 'halaman_kalkulator' %}active{% endif %}">
+                    <i class="fas fa-calculator fa-fw"></i>
+                    <span>Kalkulator</span>
+                </a>
+                <a href="{{ url_for('halaman_ipo') }}" class="menu-item {% if request.endpoint == 'halaman_ipo' %}active{% endif %}">
+                    <i class="fas fa-rocket fa-fw"></i>
+                    <span>IPO Center</span>
+                </a>
+                <a href="{{ url_for('halaman_berita') }}" class="menu-item {% if request.endpoint == 'halaman_berita' %}active{% endif %}">
+                    <i class="fas fa-newspaper fa-fw"></i>
+                    <span>Berita</span>
+                </a>
+            </div>
+            <div class="sidebar-footer">
+                <button id="theme-switcher">
+                    <i class="fas fa-sun"></i>
+                    <span>Ganti Tema</span>
+                </button>
+            </div>
+        </nav>
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    <div id="toast-container"></div>
+    <script src="{{ url_for('static', filename='portfolio.js') }}"></script>
+    {% block body_scripts %}{% endblock %}
+</body>
+</html>

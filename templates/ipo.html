@@ -1,0 +1,17 @@
+<!-- ------------------- -->
+<!-- templates/ipo.html -->
+<!-- ------------------- -->
+{% extends 'layout.html' %}
+{% block title %}IPO Center{% endblock %}
+{% block content %}
+<header class="page-header">
+    <h1><i class="fas fa-rocket"></i> IPO Center</h1>
+    <p>Daftar perusahaan yang akan segera melantai di bursa.</p>
+</header>
+<div id="ipo-list" class="ipo-grid">
+    <p class="loading-text">Memuat data IPO...</p>
+</div>
+{% endblock %}
+{% block body_scripts %}
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock %}

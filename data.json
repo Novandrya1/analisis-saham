@@ -1,0 +1,27 @@
+{
+  "indeks": [
+    {"kode": "IHSG", "nama": "Indeks Harga Saham Gabungan", "market": "IDX"},
+    {"kode": "COMPX", "nama": "NASDAQ Composite", "market": "US"}
+  ],
+  "saham": [
+    {"kode": "BBCA", "nama": "Bank Central Asia Tbk.", "sektor": "Keuangan", "market": "IDX", "market_cap_t": 1150, "pe_ratio": 25.5, "div_yield": "2.1%", "volume": "150.5M", "52w_high": 10200, "52w_low": 8500, "description": "Bank swasta terbesar di Indonesia berdasarkan nilai aset, menyediakan berbagai layanan perbankan komersial dan individu.", "analyst_rating": {"buy": 18, "hold": 5, "sell": 1}},
+    {"kode": "BBRI", "nama": "Bank Rakyat Indonesia", "sektor": "Keuangan", "market": "IDX", "market_cap_t": 670, "pe_ratio": 15.2, "div_yield": "4.5%", "volume": "250.2M", "52w_high": 6500, "52w_low": 4300, "description": "Salah satu bank milik negara terbesar di Indonesia, fokus pada layanan perbankan mikro, kecil, dan menengah.", "analyst_rating": {"buy": 22, "hold": 2, "sell": 0}},
+    {"kode": "TLKM", "nama": "Telkom Indonesia", "sektor": "Infrastruktur", "market": "IDX", "market_cap_t": 305, "pe_ratio": 14.1, "div_yield": "5.2%", "volume": "180.7M", "52w_high": 4500, "52w_low": 2900, "description": "Perusahaan telekomunikasi milik negara terbesar di Indonesia, menyediakan layanan seluler, internet, dan data.", "analyst_rating": {"buy": 15, "hold": 8, "sell": 2}},
+    {"kode": "ASII", "nama": "Astra International Tbk.", "sektor": "Aneka Industri", "market": "IDX", "market_cap_t": 210, "pe_ratio": 8.5, "div_yield": "6.1%", "volume": "90.3M", "52w_high": 6800, "52w_low": 5000, "description": "Konglomerat bisnis terdiversifikasi terbesar di Indonesia dengan fokus pada otomotif, jasa keuangan, dan agribisnis.", "analyst_rating": {"buy": 12, "hold": 10, "sell": 3}},
+    {"kode": "ADRO", "nama": "Adaro Energy Indonesia Tbk.", "sektor": "Energi", "market": "IDX", "market_cap_t": 90, "pe_ratio": 5.5, "div_yield": "8.5%", "volume": "110.8M", "52w_high": 3500, "52w_low": 2500, "description": "Salah satu produsen batu bara termal terbesar di belahan bumi selatan, dengan operasi terintegrasi.", "analyst_rating": {"buy": 10, "hold": 7, "sell": 4}},
+    {"kode": "AAPL", "nama": "Apple Inc.", "sektor": "Teknologi", "market": "US", "market_cap_t": 48300, "pe_ratio": 32.5, "div_yield": "0.5%", "volume": "65.8M", "52w_high": 220, "52w_low": 165, "description": "Perusahaan teknologi multinasional yang merancang, mengembangkan, dan menjual elektronik konsumen, perangkat lunak, dan layanan online.", "analyst_rating": {"buy": 30, "hold": 10, "sell": 2}},
+    {"kode": "GOOGL", "nama": "Alphabet Inc. (Google)", "sektor": "Teknologi", "market": "US", "market_cap_t": 34100, "pe_ratio": 27.8, "div_yield": "N/A", "volume": "25.1M", "52w_high": 185, "52w_low": 120, "description": "Induk perusahaan Google, berfokus pada layanan dan produk terkait internet, termasuk pencarian, periklanan, dan komputasi awan.", "analyst_rating": {"buy": 35, "hold": 5, "sell": 0}},
+    {"kode": "TSLA", "nama": "Tesla, Inc.", "sektor": "Aneka Industri", "market": "US", "market_cap_t": 9150, "pe_ratio": 45.2, "div_yield": "N/A", "volume": "95.3M", "52w_high": 300, "52w_low": 140, "description": "Perusahaan otomotif dan energi bersih yang merancang dan memproduksi mobil listrik, penyimpanan energi baterai, dan panel surya.", "analyst_rating": {"buy": 15, "hold": 15, "sell": 10}}
+  ],
+  "ipo": [
+    {"kode": "PERT", "nama": "PT Pertamina Hulu Energi", "sektor": "Energi", "market": "IDX", "price_range": "750 - 900", "offering_size_t": 15.0, "due_date": "2025-08-15"},
+    {"kode": "STRIPE", "nama": "Stripe, Inc.", "sektor": "Teknologi", "market": "US", "price_range": "$120 - $140", "offering_size_t": 250.0, "due_date": "2025-10-10"}
+  ],
+  "berita": [
+    {"judul": "IHSG Menguat, Saham Perbankan Big Caps Jadi Motor Penggerak", "sumber": "CNBC Indonesia", "waktu": "1 jam lalu", "tags": ["IHSG", "BBCA", "BBRI"]},
+    {"judul": "Apple Meluncurkan Chip M5, Saham Teknologi Global Bereaksi Positif", "sumber": "Reuters", "waktu": "3 jam lalu", "tags": ["AAPL", "GOOGL", "US"]},
+    {"judul": "Tesla Umumkan Pembangunan Gigafactory Baru di Asia Tenggara", "sumber": "Bloomberg", "waktu": "8 jam lalu", "tags": ["TSLA"]},
+    {"judul": "Harga Batu Bara Kembali Naik, Saham Energi Menghijau", "sumber": "Kontan", "waktu": "1 hari lalu", "tags": ["ADRO", "IDX"]},
+    {"judul": "IPO Stripe Diperkirakan Menjadi yang Terbesar Tahun Ini", "sumber": "Wall Street Journal", "waktu": "2 hari lalu", "tags": ["IPO", "STRIPE", "US"]}
+  ]
+}

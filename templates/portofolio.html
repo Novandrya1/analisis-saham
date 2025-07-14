@@ -1,0 +1,72 @@
+<!-- ------------------------- -->
+<!-- templates/portofolio.html -->
+<!-- ------------------------- -->
+{% extends 'layout.html' %}
+{% block title %}Portofolio Saya{% endblock %}
+{% block content %}
+<header class="page-header">
+    <h1><i class="fas fa-briefcase"></i> Portofolio Saya</h1>
+</header>
+<div class="portfolio-summary-grid">
+    <div class="summary-card">
+        <h4>Total Nilai Aset</h4>
+        <p id="total-asset-value">Rp 0</p>
+    </div>
+    <div class="summary-card">
+        <h4>Total Investasi</h4>
+        <p id="total-investment">Rp 0</p>
+    </div>
+    <div class="summary-card">
+        <h4>Profit/Loss</h4>
+        <p id="total-pl" class="neutral">Rp 0 (0.00%)</p>
+    </div>
+    <div class="summary-card">
+        <h4>Uang Tunai</h4>
+        <p id="cash-balance">Rp 0</p>
+    </div>
+</div>
+<div class="content-panel">
+    <h3>Posisi Saat Ini</h3>
+    <table id="holdingsTable">
+        <thead>
+            <tr>
+                <th class="th-company">Perusahaan</th>
+                <th>Lot</th>
+                <th>Harga Beli Avg.</th>
+                <th>Harga Terakhir</th>
+                <th class="text-right">Nilai Pasar</th>
+                <th class="text-right">P/L</th>
+            </tr>
+        </thead>
+        <tbody id="holdings-table-body">
+            <tr class="loading-row">
+                <td colspan="6">Tidak ada saham di portofolio.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="content-panel">
+    <h3>Riwayat Transaksi</h3>
+    <table id="historyTable">
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Kode</th>
+                <th>Aksi</th>
+                <th>Lot</th>
+                <th class="text-right">Harga</th>
+                <th class="text-right">Total</th>
+            </tr>
+        </thead>
+        <tbody id="history-table-body">
+            <tr class="loading-row">
+                <td colspan="6">Tidak ada riwayat transaksi.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+{% block body_scripts %}
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+<!-- ---------------------- -->
+<!-- templates/berita.html -->
+<!-- ---------------------- -->
+{% extends 'layout.html' %}
+{% block title %}Berita Pasar{% endblock %}
+{% block content %}
+<header class="page-header">
+    <h1><i class="fas fa-newspaper"></i> Berita Pasar Terkini</h1>
+</header>
+<div id="news-list" class="news-grid">
+    <p class="loading-text">Memuat berita...</p>
+</div>
+{% endblock %}
+{% block body_scripts %}
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock %}
