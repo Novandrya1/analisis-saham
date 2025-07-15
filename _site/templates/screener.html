@@ -1,0 +1,56 @@
+<!-- ------------------------ -->
+<!-- templates/screener.html -->
+<!-- ------------------------ -->
+{% extends 'layout.html' %}
+{% block title %}Stock Screener{% endblock %}
+{% block content %}
+<header class="page-header">
+    <h1><i class="fas fa-filter"></i> Stock Screener</h1>
+    <p>Temukan saham berdasarkan kriteria spesifik Anda.</p>
+</header>
+<div class="screener-controls">
+    <div class="filter-group">
+        <label for="marketFilter">Pasar</label>
+        <select id="marketFilter">
+            <option value="all">Semua Pasar</option>
+            <option value="IDX">Indonesia (IDX)</option>
+            <option value="US">Amerika (US)</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="sektorFilter">Sektor</label>
+        <select id="sektorFilter">
+            <option value="all">Semua Sektor</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="marketCapFilter">Market Cap (Triliun Rp)</label>
+        <select id="marketCapFilter">
+            <option value="all">Semua Ukuran</option>
+            <option value="small">&lt; 100 T</option>
+            <option value="medium">100 T - 500 T</option>
+            <option value="large">&gt; 500 T</option>
+        </select>
+    </div>
+</div>
+<div class="content-panel">
+    <table id="screenerTable">
+        <thead>
+            <tr>
+                <th class="th-company">Perusahaan</th>
+                <th>Sektor</th>
+                <th class="text-right">Market Cap</th>
+                <th class="text-right">P/E Ratio</th>
+            </tr>
+        </thead>
+        <tbody id="screener-table-body">
+            <tr class="loading-row">
+                <td colspan="4">Memuat data...</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+{% block body_scripts %}
+<script src="{{ url_for('static', filename='screener.js') }}"></script>
+{% endblock %}
